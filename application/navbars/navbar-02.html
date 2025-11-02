@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Navbar | TailGrids</title>
+    <link
+      rel="shortcut icon"
+      href="../../assets/images/favicon.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../../assets/css/tailwind.css" />
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+  <body class="bg-gray-50 dark:bg-dark-1">
+    <!-- ====== Navbar Start ====== -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-dark-2 transition-all duration-300">
+      <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between h-16">
+          <!-- Logo -->
+          <div class="flex items-center space-x-2">
+            <img src="../../assets/images/logo.svg" alt="TailGrids" class="h-8" />
+            <span class="text-xl font-bold text-primary dark:text-primary-400">TailGrids</span>
+          </div>
+          
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-8">
+            <!-- Main Navigation -->
+            <ul class="flex space-x-8">
+              <!-- Home -->
+              <li>
+                <a href="#" class="text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                  Home
+                </a>
+              </li>
+              
+              <!-- Features (Dropdown) -->
+              <li x-data="{ open: false }" class="relative">
+                <button @mouseenter="open = true" @mouseleave="open = false" class="flex items-center space-x-1 text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                  <span>Features</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                
+                <!-- Dropdown Menu -->
+                <div x-show="open" @mouseenter="open = true" @mouseleave="open = false" class="absolute top-full left-0 w-64 rounded-lg shadow-lg bg-white dark:bg-dark-2 ring-1 ring-black ring-opacity-5 py-2 mt-1 z-50">
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-dark-3 transition-colors">
+                    Dark Mode Components
+                  </a>
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-dark-3 transition-colors">
+                    E-commerce Components
+                  </a>
+                  <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-dark-3 transition-colors">
+                    Dashboard Components
+                  </a>
+                  <div class="border-t border-gray-200 dark:border-dark-3 my-1"></div>
+                  <a href="#" class="block px-4 py-2 text-sm text-primary dark:text-primary-400 hover:bg-gray-100 dark:hover:bg-dark-3 transition-colors">
+                    View All Components
+                  </a>
+                </div>
+              </li>
+              
+              <!-- Pricing -->
+              <li>
+                <a href="#" class="text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                  Pricing
+                </a>
+              </li>
+              
+              <!-- Resources (Dropdown with Megamenu) -->
+              <li x-data="{ open: false }" class="relative">
+                <button @mouseenter="open = true" @mouseleave="open = false" class="flex items-center space-x-1 text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                  <span>Resources</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                
+                <!-- Megamenu -->
+                <div x-show="open" @mouseenter="open = true" @mouseleave="open = false" class="absolute top-full left-0 w-full min-w-[800px] rounded-lg shadow-lg bg-white dark:bg-dark-2 ring-1 ring-black ring-opacity-5 py-6 mt-1 z-50">
+                  <div class="container mx-auto px-4">
+                    <div class="grid grid-cols-3 gap-8">
+                      <!-- Column 1 -->
+                      <div>
+                        <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">Documentation</h3>
+                        <ul class="space-y-2">
+                          <li>
+                            <a href="#" class="block text-sm text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                              Getting Started
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="block text-sm text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                              Installation Guide
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="block text-sm text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                              Component API
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="block text-sm text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                              Customization
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      
+                      <!-- Column 2 -->
+                      <div>
+                        <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">Tutorials</h3>
+                        <ul class="space-y-2">
+                          <li>
+                            <a href="#" class="block text-sm text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                              Building a Dashboard
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="block text-sm text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                              Creating a Landing Page
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="block text-sm text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                              E-commerce Checkout Flow
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="block text-sm text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                              Dark Mode Implementation
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      
+                      <!-- Column 3 -->
+                      <div>
+                        <h3 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">Support</h3>
+                        <ul class="space-y-2">
+                          <li>
+                            <a href="#" class="block text-sm text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                              Community Forum
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="block text-sm text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                              Discord Server
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="block text-sm text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                              GitHub Issues
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="block text-sm text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                              Contact Support
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              
+              <!-- About -->
+              <li>
+                <a href="#" class="text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                  About
+                </a>
+              </li>
+            </ul>
+            
+            <!-- CTA Buttons -->
+            <div class="flex items-center space-x-3">
+              <a href="#" class="text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+                Sign In
+              </a>
+              <a href="#" class="bg-primary hover:bg-primary-600 dark:bg-primary-400 dark:hover:bg-primary-500 text-white px-5 py-2 rounded-lg transition-colors">
+                Sign Up
+              </a>
+            </div>
+          </div>
+          
+          <!-- Mobile Navigation Toggle -->
+          <div class="md:hidden flex items-center">
+            <button id="mobileMenuButton" class="text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mobile Navigation Menu -->
+      <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-dark-2 border-t border-gray-200 dark:border-dark-3">
+        <div class="container mx-auto px-4 py-4">
+          <ul class="space-y-4">
+            <!-- Home -->
+            <li>
+              <a href="#" class="block text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors py-2">
+                Home
+              </a>
+            </li>
+            
+            <!-- Features (Mobile Dropdown) -->
+            <li x-data="{ open: false }">
+              <button @click="open = !open" class="flex items-center justify-between w-full text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors py-2">
+                <span>Features</span>
+                <svg class="w-4 h-4 transform transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              <div x-show="open" class="pl-4 mt-2 space-y-2">
+                <a href="#" class="block text-sm text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-400 transition-colors py-1">
+                  Dark Mode Components
+                </a>
+                <a href="#" class="block text-sm text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-400 transition-colors py-1">
+                  E-commerce Components
+                </a>
+                <a href="#" class="block text-sm text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-400 transition-colors py-1">
+                  Dashboard Components
+                </a>
+                <a href="#" class="block text-sm text-primary dark:text-primary-400 hover:text-primary-600 dark:hover:text-primary-300 transition-colors py-1 font-medium">
+                  View All Components
+                </a>
+              </div>
+            </li>
+            
+            <!-- Pricing -->
+            <li>
+              <a href="#" class="block text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors py-2">
+                Pricing
+              </a>
+            </li>
+            
+            <!-- Resources (Mobile Dropdown) -->
+            <li x-data="{ open: false }">
+              <button @click="open = !open" class="flex items-center justify-between w-full text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors py-2">
+                <span>Resources</span>
+                <svg class="w-4 h-4 transform transition-transform" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              <div x-show="open" class="pl-4 mt-2 space-y-2">
+                <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 py-1">Documentation</h4>
+                <a href="#" class="block text-sm text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-400 transition-colors py-1">
+                  Getting Started
+                </a>
+                <a href="#" class="block text-sm text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-400 transition-colors py-1">
+                  Installation Guide
+                </a>
+                <a href="#" class="block text-sm text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-400 transition-colors py-1">
+                  Component API
+                </a>
+                
+                <h4 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2 py-1 mt-3">Tutorials</h4>
+                <a href="#" class="block text-sm text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-400 transition-colors py-1">
+                  Building a Dashboard
+                </a>
+                <a href="#" class="block text-sm text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-400 transition-colors py-1">
+                  Creating a Landing Page
+                </a>
+              </div>
+            </li>
+            
+            <!-- About -->
+            <li>
+              <a href="#" class="block text-gray-700 dark:text-white hover:text-primary dark:hover:text-primary-400 transition-colors py-2">
+                About
+              </a>
+            </li>
+          </ul>
+          
+          <!-- Mobile CTA Buttons -->
+          <div class="mt-6 flex flex-col space-y-3">
+            <a href="#" class="bg-white dark:bg-dark-3 border border-primary text-primary dark:text-primary-400 px-5 py-2 rounded-lg text-center transition-colors">
+              Sign In
+            </a>
+            <a href="#" class="bg-primary hover:bg-primary-600 dark:bg-primary-400 dark:hover:bg-primary-500 text-white px-5 py-2 rounded-lg text-center transition-colors">
+              Sign Up
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- ====== Navbar End ====== -->
+
+    <!-- ====== Hero Section Start ====== -->
+    <section class="pt-24 pb-16 bg-gray-50 dark:bg-dark-1">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 mb-12 md:mb-0">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+              Build Beautiful Interfaces with TailGrids
+            </h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-lg">
+              A comprehensive UI component library for Tailwind CSS with 600+ pre-designed components, including dark mode support, responsive layouts, and more.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="bg-primary hover:bg-primary-600 dark:bg-primary-400 dark:hover:bg-primary-500 text-white px-6 py-3 rounded-lg transition-colors">
+                Get Started
+              </a>
+              <a href="#" class="bg-white dark:bg-dark-2 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-white px-6 py-3 rounded-lg transition-colors">
+                View Components
+              </a>
+            </div>
+          </div>
+          <div class="md:w-1/2">
+            <img src="../../assets/images/hero-image.svg" alt="Hero Image" class="w-full h-auto" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Hero Section End ====== -->
+
+    <!-- ====== Features Section Start ====== -->
+    <section class="py-16 bg-white dark:bg-dark-2">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Everything You Need to Build Great Interfaces
+          </h2>
+          <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            TailGrids provides a comprehensive set of components that are easy to use, customizable, and responsive.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Feature 1 -->
+          <div class="bg-gray-50 dark:bg-dark-1 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
+            <div class="w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-primary dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">
+              Dark Mode Support
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              All components come with dark mode support out of the box, making it easy to create beautiful dark interfaces.
+            </p>
+          </div>
+          
+          <!-- Feature 2 -->
+          <div class="bg-gray-50 dark:bg-dark-1 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
+            <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">
+              Responsive Design
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              Components are designed to be responsive and work seamlessly across all devices and screen sizes.
+            </p>
+          </div>
+          
+          <!-- Feature 3 -->
+          <div class="bg-gray-50 dark:bg-dark-1 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800">
+            <div class="w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-medium text-gray-900 dark:text-white mb-2">
+              Customizable
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              Easily customize components to match your brand with Tailwind CSS utilities and custom theme options.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Features Section End ====== -->
+
+    <!-- ====== JavaScript Start ====== -->
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      if (mobileMenuButton) {
+        mobileMenuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+
+      // Scroll Effect for Navbar
+      window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+          navbar.classList.add('shadow-sm');
+          navbar.classList.add('py-1');
+        } else {
+          navbar.classList.remove('shadow-sm');
+          navbar.classList.remove('py-1');
+        }
+      });
+
+      // Keyboard Shortcuts for Navigation
+      document.addEventListener('keydown', (e) => {
+        // Alt + Home to go to home page
+        if (e.altKey && e.key === 'Home') {
+          e.preventDefault();
+          window.location.href = '#';
+        }
+        
+        // Alt + F to focus on features dropdown
+        if (e.altKey && e.key === 'f') {
+          e.preventDefault();
+          document.querySelector('li[x-data="{ open: false }"][x-show="open"] button').focus();
+        }
+        
+        // Alt + P to go to pricing page
+        if (e.altKey && e.key === 'p') {
+          e.preventDefault();
+          window.location.href = '#';
+        }
+      });
+    </script>
+    <!-- ====== JavaScript End ====== -->
+  </body>
+</html>

@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout Flow | TailGrids</title>
+    <link
+      rel="shortcut icon"
+      href="../../assets/images/favicon.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../../assets/css/tailwind.css" />
+    
+    <script defer src="../../assets/js/alpine.min.js"></script>
+  </head>
+  <body class="bg-gray-2 dark:bg-dark">
+    <!-- ====== Navbar Section Start -->
+    <header
+      x-data="
+        {
+          navbarOpen: false
+        }
+      "
+      class="flex w-full items-center bg-white dark:bg-dark"
+    >
+      <div class="container mx-auto">
+        <div class="relative -mx-4 flex items-center justify-between">
+          <div class="w-60 max-w-full px-4">
+            <a href="javascript:void(0)" class="block w-full py-5">
+              <img
+                src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-primary.svg"
+                alt="logo"
+                class="dark:hidden"
+              />
+              <img
+                src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-white.svg"
+                alt="logo"
+                class="hidden dark:block"
+              />
+            </a>
+          </div>
+          <div class="flex w-full items-center justify-between px-4">
+            <div>
+              <button
+                @click="navbarOpen = !navbarOpen"
+                :class="navbarOpen && 'navbarTogglerActive' "
+                id="navbarToggler"
+                class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
+              >
+                <span
+                  class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"
+                ></span>
+                <span
+                  class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"
+                ></span>
+                <span
+                  class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"
+                ></span>
+              </button>
+              <nav
+                :class="!navbarOpen && 'hidden' "
+                id="navbarCollapse"
+                class="absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none dark:bg-dark-2 lg:dark:bg-transparent"
+              >
+                <ul class="block lg:flex">
+                  <li>
+                    <a
+                      href="javascript:void(0)"
+                      class="flex py-2 text-base font-medium text-body-color hover:text-dark lg:ml-12 lg:inline-flex dark:text-dark-6 dark:hover:text-white"
+                    >
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="javascript:void(0)"
+                      class="flex py-2 text-base font-medium text-body-color hover:text-dark lg:ml-12 lg:inline-flex dark:text-dark-6 dark:hover:text-white"
+                    >
+                      Shop
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="javascript:void(0)"
+                      class="flex py-2 text-base font-medium text-body-color hover:text-dark lg:ml-12 lg:inline-flex dark:text-dark-6 dark:hover:text-white"
+                    >
+                      Cart
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
+              <a
+                href="javascript:void(0)"
+                class="px-7 py-3 text-base font-medium text-dark hover:text-primary dark:text-white"
+              >
+                Login
+              </a>
+              <a
+                href="javascript:void(0)"
+                class="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90"
+              >
+                Sign Up
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ====== Navbar Section End -->
+    
+    <!-- ====== Checkout Flow Section Start -->
+    <section class="py-10 lg:py-20">
+      <div class="container mx-auto">
+        <div class="mb-12">
+          <h2 class="text-[clamp(24px,5vw,36px)] font-bold leading-tight text-dark dark:text-white">
+            Checkout
+          </h2>
+          <p class="text-body-color dark:text-dark-6">
+            Please fill in the details below to complete your purchase
+          </p>
+        </div>
+        
+        <!-- Checkout Steps -->
+        <div class="mb-10">
+          <div class="flex flex-wrap justify-between gap-4 sm:gap-8">
+            <div class="flex items-center gap-2 text-sm font-medium text-primary">
+              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white">
+                1
+              </span>
+              <span>Cart Review</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm font-medium text-dark-5 dark:text-dark-6">
+              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-2 dark:bg-dark-3">
+                2
+              </span>
+              <span>Shipping</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm font-medium text-dark-5 dark:text-dark-6">
+              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-2 dark:bg-dark-3">
+                3
+              </span>
+              <span>Payment</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm font-medium text-dark-5 dark:text-dark-6">
+              <span class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-2 dark:bg-dark-3">
+                4
+              </span>
+              <span>Confirmation</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="-mx-4 flex flex-wrap">
+          <!-- Cart Review -->
+          <div class="w-full px-4 md:w-2/3">
+            <div class="bg-white rounded-lg shadow dark:bg-dark-2 dark:shadow-card">
+              <div class="p-6 border-b border-stroke dark:border-dark-3">
+                <h3 class="text-xl font-semibold text-dark dark:text-white">
+                  Your Cart
+                </h3>
+              </div>
+              
+              <!-- Cart Items -->
+              <div class="p-6">
+                <div class="space-y-6">
+                  <!-- Cart Item 1 -->
+                  <div class="flex flex-wrap gap-6">
+                    <div class="w-full sm:w-auto">
+                      <img
+                        src="../../assets/images/cards/card-01.jpg"
+                        alt="product image"
+                        class="h-24 w-24 rounded object-cover"
+                      />
+                    </div>
+                    <div class="flex-1">
+                      <div class="flex flex-wrap justify-between">
+                        <h4 class="text-base font-medium text-dark dark:text-white">
+                          Premium Wireless Headphones
+                        </h4>
+                        <span class="text-base font-semibold text-dark dark:text-white">
+                          $199.99
+                        </span>
+                      </div>
+                      <p class="mt-1 text-sm text-dark-5 dark:text-dark-6">
+                        Black, Wireless, Noise Cancelling
+                      </p>
+                      <div class="mt-3 flex items-center gap-3">
+                        <button class="flex h-8 w-8 items-center justify-center rounded border border-stroke dark:border-dark-3">
+                          -</button>
+                        <span class="text-sm font-medium">1</span>
+                        <button class="flex h-8 w-8 items-center justify-center rounded border border-stroke dark:border-dark-3">
+                          +</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Cart Item 2 -->
+                  <div class="flex flex-wrap gap-6">
+                    <div class="w-full sm:w-auto">
+                      <img
+                        src="../../assets/images/cards/card-02.jpg"
+                        alt="product image"
+                        class="h-24 w-24 rounded object-cover"
+                      />
+                    </div>
+                    <div class="flex-1">
+                      <div class="flex flex-wrap justify-between">
+                        <h4 class="text-base font-medium text-dark dark:text-white">
+                          Smart Watch Series 7
+                        </h4>
+                        <span class="text-base font-semibold text-dark dark:text-white">
+                          $399.99
+                        </span>
+                      </div>
+                      <p class="mt-1 text-sm text-dark-5 dark:text-dark-6">
+                        45mm, GPS, Aluminum Case
+                      </p>
+                      <div class="mt-3 flex items-center gap-3">
+                        <button class="flex h-8 w-8 items-center justify-center rounded border border-stroke dark:border-dark-3">
+                          -</button>
+                        <span class="text-sm font-medium">1</span>
+                        <button class="flex h-8 w-8 items-center justify-center rounded border border-stroke dark:border-dark-3">
+                          +</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-stroke dark:border-dark-3">
+                  <div class="flex justify-between mb-3">
+                    <span class="text-base font-medium text-dark-5 dark:text-dark-6">Subtotal</span>
+                    <span class="text-base font-semibold text-dark dark:text-white">$599.98</span>
+                  </div>
+                  <div class="flex justify-between mb-3">
+                    <span class="text-base font-medium text-dark-5 dark:text-dark-6">Shipping</span>
+                    <span class="text-base font-semibold text-dark dark:text-white">Free</span>
+                  </div>
+                  <div class="flex justify-between mb-3">
+                    <span class="text-base font-medium text-dark-5 dark:text-dark-6">Tax</span>
+                    <span class="text-base font-semibold text-dark dark:text-white">$47.99</span>
+                  </div>
+                  <div class="flex justify-between mt-6 text-xl font-bold">
+                    <span class="text-dark dark:text-white">Total</span>
+                    <span class="text-primary">$647.97</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Shipping Details -->
+          <div class="w-full px-4 mt-10 md:w-1/3 md:mt-0">
+            <div class="bg-white rounded-lg shadow dark:bg-dark-2 dark:shadow-card">
+              <div class="p-6 border-b border-stroke dark:border-dark-3">
+                <h3 class="text-xl font-semibold text-dark dark:text-white">
+                  Shipping Details
+                </h3>
+              </div>
+              
+              <form class="p-6 space-y-6">
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <div>
+                    <label
+                      for="first-name"
+                      class="mb-2.5 block text-base font-medium text-dark dark:text-white"
+                    >
+                      First Name
+                    </label>
+                    <input
+                      type="text"
+                      id="first-name"
+                      placeholder="Enter your first name"
+                      class="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-dark placeholder-dark-6 outline-hidden focus:border-primary dark:border-dark-3 dark:text-white dark:placeholder-dark-5"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="last-name"
+                      class="mb-2.5 block text-base font-medium text-dark dark:text-white"
+                    >
+                      Last Name
+                    </label>
+                    <input
+                      type="text"
+                      id="last-name"
+                      placeholder="Enter your last name"
+                      class="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-dark placeholder-dark-6 outline-hidden focus:border-primary dark:border-dark-3 dark:text-white dark:placeholder-dark-5"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label
+                    for="email"
+                    class="mb-2.5 block text-base font-medium text-dark dark:text-white"
+                  >
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email address"
+                    class="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-dark placeholder-dark-6 outline-hidden focus:border-primary dark:border-dark-3 dark:text-white dark:placeholder-dark-5"
+                  />
+                </div>
+                
+                <div>
+                  <label
+                    for="phone"
+                    class="mb-2.5 block text-base font-medium text-dark dark:text-white"
+                  >
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Enter your phone number"
+                    class="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-dark placeholder-dark-6 outline-hidden focus:border-primary dark:border-dark-3 dark:text-white dark:placeholder-dark-5"
+                  />
+                </div>
+                
+                <div>
+                  <label
+                    for="address"
+                    class="mb-2.5 block text-base font-medium text-dark dark:text-white"
+                  >
+                    Street Address
+                  </label>
+                  <input
+                    type="text"
+                    id="address"
+                    placeholder="Enter your street address"
+                    class="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-dark placeholder-dark-6 outline-hidden focus:border-primary dark:border-dark-3 dark:text-white dark:placeholder-dark-5"
+                  />
+                </div>
+                
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <div>
+                    <label
+                      for="city"
+                      class="mb-2.5 block text-base font-medium text-dark dark:text-white"
+                    >
+                      City
+                    </label>
+                    <input
+                      type="text"
+                      id="city"
+                      placeholder="Enter your city"
+                      class="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-dark placeholder-dark-6 outline-hidden focus:border-primary dark:border-dark-3 dark:text-white dark:placeholder-dark-5"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="state"
+                      class="mb-2.5 block text-base font-medium text-dark dark:text-white"
+                    >
+                      State/Province
+                    </label>
+                    <select
+                      id="state"
+                      class="w-full appearance-none rounded-lg border border-stroke bg-transparent py-3 pl-5 pr-12 text-dark outline-hidden focus:border-primary dark:border-dark-3 dark:text-white"
+                    >
+                      <option value="">Select State</option>
+                      <option value="CA">California</option>
+                      <option value="NY">New York</option>
+                      <option value="TX">Texas</option>
+                    </select>
+                    <span
+                      class="pointer-events-none absolute right-0 top-0 flex h-full w-12 items-center justify-center text-dark-5"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M2.29645 5.15354L2.29642 5.15357L2.30065 5.1577L7.65065 10.3827L8.00167 10.7255L8.35105 10.381L13.7011 5.10603L13.7011 5.10604L13.7036 5.10354C13.7221 5.08499 13.7386 5.08124 13.75 5.08124C13.7614 5.08124 13.7779 5.08499 13.7964 5.10354C13.815 5.12209 13.8188 5.13859 13.8188 5.14999C13.8188 5.1612 13.8151 5.17734 13.7974 5.19552L8.04956 10.8433L8.04955 10.8433L8.04645 10.8464C8.01604 10.8768 7.99596 10.8921 7.98519 10.8992C7.97756 10.8983 7.97267 10.8968 7.96862 10.8952C7.96236 10.8929 7.94954 10.887 7.92882 10.8721L2.20263 5.2455C2.18488 5.22733 2.18125 5.2112 2.18125 5.19999C2.18125 5.18859 2.18501 5.17209 2.20355 5.15354C2.2221 5.13499 2.2386 5.13124 2.25 5.13124C2.2614 5.13124 2.2779 5.13499 2.29645 5.15354Z"
+                          fill="currentColor"
+                          stroke="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+                
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <div>
+                    <label
+                      for="zip"
+                      class="mb-2.5 block text-base font-medium text-dark dark:text-white"
+                    >
+                      ZIP/Postal Code
+                    </label>
+                    <input
+                      type="text"
+                      id="zip"
+                      placeholder="Enter your ZIP code"
+                      class="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-dark placeholder-dark-6 outline-hidden focus:border-primary dark:border-dark-3 dark:text-white dark:placeholder-dark-5"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="country"
+                      class="mb-2.5 block text-base font-medium text-dark dark:text-white"
+                    >
+                      Country
+                    </label>
+                    <select
+                      id="country"
+                      class="w-full appearance-none rounded-lg border border-stroke bg-transparent py-3 pl-5 pr-12 text-dark outline-hidden focus:border-primary dark:border-dark-3 dark:text-white"
+                    >
+                      <option value="">Select Country</option>
+                      <option value="US">United States</option>
+                      <option value="UK">United Kingdom</option>
+                      <option value="CA">Canada</option>
+                    </select>
+                    <span
+                      class="pointer-events-none absolute right-0 top-0 flex h-full w-12 items-center justify-center text-dark-5"
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M2.29645 5.15354L2.29642 5.15357L2.30065 5.1577L7.65065 10.3827L8.00167 10.7255L8.35105 10.381L13.7011 5.10603L13.7011 5.10604L13.7036 5.10354C13.7221 5.08499 13.7386 5.08124 13.75 5.08124C13.7614 5.08124 13.7779 5.08499 13.7964 5.10354C13.815 5.12209 13.8188 5.13859 13.8188 5.14999C13.8188 5.1612 13.8151 5.17734 13.7974 5.19552L8.04956 10.8433L8.04955 10.8433L8.04645 10.8464C8.01604 10.8768 7.99596 10.8921 7.98519 10.8992C7.97756 10.8983 7.97267 10.8968 7.96862 10.8952C7.96236 10.8929 7.94954 10.887 7.92882 10.8721L2.20263 5.2455C2.18488 5.22733 2.18125 5.2112 2.18125 5.19999C2.18125 5.18859 2.18501 5.17209 2.20355 5.15354C2.2221 5.13499 2.2386 5.13124 2.25 5.13124C2.2614 5.13124 2.2779 5.13499 2.29645 5.15354Z"
+                          fill="currentColor"
+                          stroke="currentColor"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+                
+                <div class="flex items-start">
+                  <input
+                    type="checkbox"
+                    id="save-address"
+                    class="mt-1 h-4 w-4 rounded border-stroke bg-transparent text-primary focus:ring-primary dark:border-dark-3"
+                  />
+                  <label
+                    for="save-address"
+                    class="ml-3 text-base font-medium text-dark-5 dark:text-dark-6"
+                  >
+                    Save this address for future purchases
+                  </label>
+                </div>
+                
+                <button
+                  @click="nextStep"
+                  class="w-full rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90"
+                >
+                  Continue to Payment
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Checkout Flow Section End -->
+    
+    <!-- ====== Footer Section Start -->
+    <footer class="bg-dark py-15 dark:bg-dark">
+      <div class="container mx-auto">
+        <div class="-mx-4 flex flex-wrap">
+          <div class="w-full px-4 md:w-1/2 lg:w-1/4">
+            <div class="mb-12 max-w-[260px]">
+              <a href="javascript:void(0)" class="mb-6 inline-block">
+                <img
+                  src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-white.svg"
+                  alt="logo"
+                  class="w-[120px]"
+                />
+              </a>
+              <p class="mb-9 text-base font-medium text-dark-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna in est adipiscing in phasellus non in justo.
+              </p>
+              <div class="flex items-center space-x-4">
+                <a
+                  href="javascript:void(0)"
+                  class="flex h-10 w-10 items-center justify-center rounded-full bg-dark-2 hover:bg-primary"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 0C3.58172 0 0 3.58172 0 8C0 11.5849 2.50195 14.5849 5.83203 15.7344V10.5H4.21875V8H5.83203V6.23438C5.83203 4.23828 6.94531 3 8.59375 3C9.20703 3 9.79688 3.09375 10.3125 3.25V5.5H9.17969C8.53516 5.5 8.20312 5.82422 8.20312 6.46094V8H10.2891L9.97656 10.5H8.20312V15.7344C11.4961 14.6094 14 11.6758 14 8C14 3.58172 10.4183 0 6 0C5.80469 0 5.60938 0.0117188 5.41406 0.0351562L8 0Z"
+                      fill="white"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="flex h-10 w-10 items-center justify-center rounded-full bg-dark-2 hover:bg-primary"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 0C3.58172 0 0 3.58172 0 8C0 11.5849 2.50195 14.5849 5.83203 15.7344V10.5H4.21875V8H5.83203V6.23438C5.83203 4.23828 6.94531 3 8.59375 3C9.20703 3 9.79688 3.09375 10.3125 3.25V5.5H9.17969C8.53516 5.5 8.20312 5.82422 8.20312 6.46094V8H10.2891L9.97656 10.5H8.20312V15.7344C11.4961 14.6094 14 11.6758 14 8C14 3.58172 10.4183 0 6 0C5.80469 0 5.60938 0.0117188 5.41406 0.0351562L8 0Z"
+                      fill="white"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="flex h-10 w-10 items-center justify-center rounded-full bg-dark-2 hover:bg-primary"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 0C3.58172 0 0 3.58172 0 8C0 11.5849 2.50195 14.5849 5.83203 15.7344V10.5H4.21875V8H5.83203V6.23438C5.83203 4.23828 6.94531 3 8.59375 3C9.20703 3 9.79688 3.09375 10.3125 3.25V5.5H9.17969C8.53516 5.5 8.20312 5.82422 8.20312 6.46094V8H10.2891L9.97656 10.5H8.20312V15.7344C11.4961 14.6094 14 11.6758 14 8C14 3.58172 10.4183 0 6 0C5.80469 0 5.60938 0.0117188 5.41406 0.0351562L8 0Z"
+                      fill="white"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="w-full px-4 md:w-1/2 lg:w-1/4">
+            <div class="mb-12">
+              <h3 class="mb-6 text-xl font-bold text-white">
+                Quick Links
+              </h3>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Shop
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Blog
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="w-full px-4 md:w-1/2 lg:w-1/4">
+            <div class="mb-12">
+              <h3 class="mb-6 text-xl font-bold text-white">
+                Categories
+              </h3>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Electronics
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Fashion
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Home & Garden
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Sports
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Beauty
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="w-full px-4 md:w-1/2 lg:w-1/4">
+            <div class="mb-12">
+              <h3 class="mb-6 text-xl font-bold text-white">
+                Newsletter
+              </h3>
+              <p class="mb-6 text-base font-medium text-dark-4">
+                Subscribe to our newsletter to get the latest updates and offers.
+              </p>
+              <form class="mb-6">
+                <div class="flex">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    class="flex-1 rounded-l-lg border border-dark-3 bg-dark-2 px-5 py-3 text-base font-medium text-white placeholder-dark-5 outline-hidden focus:border-primary"
+                  />
+                  <button
+                    type="submit"
+                    class="rounded-r-lg bg-primary px-5 py-3 text-base font-medium text-white hover:bg-primary/90"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+              </form>
+              <div class="flex items-center space-x-3">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.6667 0.666626H3.33337C1.53337 0.666626 0.0666964 2.13329 0.0666964 3.93329V12.0666C0.0666964 13.8666 1.53337 15.3333 3.33337 15.3333H12.6667C14.4667 15.3333 15.9334 13.8666 15.9334 12.0666V3.93329C15.9334 2.13329 14.4667 0.666626 12.6667 0.666626ZM12.6667 14.6666H3.33337C2.20004 14.6666 1.33337 13.7999 1.33337 12.6666V3.93329C1.33337 2.80002 2.20004 1.93335 3.33337 1.93335H12.6667C13.7999 1.93335 14.6667 2.80002 14.6667 3.93329V12.6666C14.6667 13.7999 13.7999 14.6666 12.6667 14.6666ZM6.66671 10.6666H9.33337V9.33329H6.66671V10.6666ZM6.66671 8.00002H9.33337V4.66669H6.66671V8.00002Z"
+                    fill="#FF6B6B"
+                  />
+                </svg>
+                <span class="text-base font-medium text-white">
+                  Secure Payments
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- ====== Footer Section End -->
+    
+    <script>
+      // Checkout flow logic
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('checkout', () => ({
+          step: 1,
+          
+          nextStep() {
+            if (this.validateForm()) {
+              this.step++;
+              this.updateStepIndicators();
+            }
+          },
+          
+          prevStep() {
+            if (this.step > 1) {
+              this.step--;
+              this.updateStepIndicators();
+            }
+          },
+          
+          validateForm() {
+            // Simple form validation for demonstration
+            const inputs = document.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+              if (!input.value) {
+                isValid = false;
+                input.classList.add('border-red-500');
+              } else {
+                input.classList.remove('border-red-500');
+              }
+            });
+            
+            if (!isValid) {
+              alert('Please fill in all required fields');
+            }
+            
+            return isValid;
+          },
+          
+          updateStepIndicators() {
+            const steps = document.querySelectorAll('.checkout-step');
+            steps.forEach((step, index) => {
+              if (index < this.step) {
+                step.classList.add('text-primary');
+                step.classList.remove('text-dark-5', 'dark:text-dark-6');
+                step.querySelector('span').classList.add('bg-primary', 'text-white');
+                step.querySelector('span').classList.remove('bg-gray-2', 'dark:bg-dark-3');
+              } else {
+                step.classList.remove('text-primary');
+                step.classList.add('text-dark-5', 'dark:text-dark-6');
+                step.querySelector('span').classList.remove('bg-primary', 'text-white');
+                step.querySelector('span').classList.add('bg-gray-2', 'dark:bg-dark-3');
+              }
+            });
+          }
+        }));
+      });
+    </script>

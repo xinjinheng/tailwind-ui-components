@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theme Configurator | TailGrids</title>
+    <link
+      rel="shortcut icon"
+      href="../../assets/images/favicon.svg"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../../assets/css/tailwind.css" />
+    
+    <script defer src="../../assets/js/alpine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hex-rgb@5.0.0/dist/hex-rgb.min.js"></script>
+  </head>
+  <body class="bg-gray-2 dark:bg-dark">
+    <!-- ====== Navbar Section Start -->
+    <header
+      x-data="
+        {
+          navbarOpen: false
+        }
+      "
+      class="flex w-full items-center bg-white dark:bg-dark"
+    >
+      <div class="container mx-auto">
+        <div class="relative -mx-4 flex items-center justify-between">
+          <div class="w-60 max-w-full px-4">
+            <a href="javascript:void(0)" class="block w-full py-5">
+              <img
+                src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-primary.svg"
+                alt="logo"
+                class="dark:hidden"
+              />
+              <img
+                src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-white.svg"
+                alt="logo"
+                class="hidden dark:block"
+              />
+            </a>
+          </div>
+          <div class="flex w-full items-center justify-between px-4">
+            <div>
+              <button
+                @click="navbarOpen = !navbarOpen"
+                :class="navbarOpen && 'navbarTogglerActive' "
+                id="navbarToggler"
+                class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
+              >
+                <span
+                  class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"
+                ></span>
+                <span
+                  class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"
+                ></span>
+                <span
+                  class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"
+                ></span>
+              </button>
+              <nav
+                :class="!navbarOpen && 'hidden' "
+                id="navbarCollapse"
+                class="absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none dark:bg-dark-2 lg:dark:bg-transparent"
+              >
+                <ul class="block lg:flex">
+                  <li>
+                    <a
+                      href="javascript:void(0)"
+                      class="flex py-2 text-base font-medium text-body-color hover:text-dark lg:ml-12 lg:inline-flex dark:text-dark-6 dark:hover:text-white"
+                    >
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="javascript:void(0)"
+                      class="flex py-2 text-base font-medium text-body-color hover:text-dark lg:ml-12 lg:inline-flex dark:text-dark-6 dark:hover:text-white"
+                    >
+                      Components
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="javascript:void(0)"
+                      class="flex py-2 text-base font-medium text-primary hover:text-dark lg:ml-12 lg:inline-flex"
+                    >
+                      Theme Configurator
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
+              <a
+                href="javascript:void(0)"
+                class="px-7 py-3 text-base font-medium text-dark hover:text-primary dark:text-white"
+              >
+                Login
+              </a>
+              <a
+                href="javascript:void(0)"
+                class="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90"
+              >
+                Sign Up
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ====== Navbar Section End -->
+    
+    <!-- ====== Theme Configurator Section Start -->
+    <section class="py-10 lg:py-20">
+      <div class="container mx-auto">
+        <div class="mb-12">
+          <h2 class="text-[clamp(24px,5vw,36px)] font-bold leading-tight text-dark dark:text-white">
+            Theme Configurator
+          </h2>
+          <p class="text-body-color dark:text-dark-6">
+            Customize your TailGrids theme with our interactive configurator
+          </p>
+        </div>
+        
+        <div class="-mx-4 flex flex-wrap">
+          <!-- Configurator Panel -->
+          <div class="w-full px-4 md:w-1/3">
+            <div class="bg-white rounded-lg shadow dark:bg-dark-2 dark:shadow-card sticky top-24">
+              <div class="p-6 border-b border-stroke dark:border-dark-3">
+                <h3 class="text-xl font-semibold text-dark dark:text-white">
+                  Theme Settings
+                </h3>
+              </div>
+              
+              <div class="p-6 space-y-6">
+                <!-- Primary Color -->
+                <div>
+                  <h4 class="mb-3 text-base font-medium text-dark dark:text-white">
+                    Primary Color
+                  </h4>
+                  <input
+                    type="color"
+                    id="primary-color"
+                    value="#3758F9"
+                    class="w-full h-12 rounded-lg cursor-pointer"
+                  />
+                </div>
+                
+                <!-- Radius -->
+                <div>
+                  <h4 class="mb-3 text-base font-medium text-dark dark:text-white">
+                    Border Radius
+                  </h4>
+                  <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                      <span class="text-sm text-dark-5 dark:text-dark-6">Small</span>
+                      <span class="text-sm text-dark-5 dark:text-dark-6">Large</span>
+                    </div>
+                    <input
+                      type="range"
+                      id="radius"
+                      min="0"
+                      max="20"
+                      value="6"
+                      class="w-full h-2 bg-gray-3 rounded-lg appearance-none cursor-pointer dark:bg-dark-3"
+                    />
+                    <div class="text-sm text-dark-5 dark:text-dark-6">
+                      Current: <span id="radius-value">6</span>px
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Shadow -->
+                <div>
+                  <h4 class="mb-3 text-base font-medium text-dark dark:text-white">
+                    Shadow Intensity
+                  </h4>
+                  <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                      <span class="text-sm text-dark-5 dark:text-dark-6">Light</span>
+                      <span class="text-sm text-dark-5 dark:text-dark-6">Heavy</span>
+                    </div>
+                    <input
+                      type="range"
+                      id="shadow"
+                      min="0"
+                      max="5"
+                      value="1"
+                      class="w-full h-2 bg-gray-3 rounded-lg appearance-none cursor-pointer dark:bg-dark-3"
+                    />
+                    <div class="text-sm text-dark-5 dark:text-dark-6">
+                      Current: Shadow <span id="shadow-value">1</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Font -->
+                <div>
+                  <h4 class="mb-3 text-base font-medium text-dark dark:text-white">
+                    Font Family
+                  </h4>
+                  <select
+                    id="font"
+                    class="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-dark outline-hidden focus:border-primary dark:border-dark-3 dark:text-white dark:placeholder-dark-5"
+                  >
+                    <option value="Inter">Inter</option>
+                    <option value="Poppins">Poppins</option>
+                    <option value="Roboto">Roboto</option>
+                    <option value="Montserrat">Montserrat</option>
+                  </select>
+                </div>
+                
+                <!-- Generate Code Button -->
+                <button
+                  id="generate-code"
+                  class="w-full rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90"
+                >
+                  Generate Tailwind Config
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Preview Section -->
+          <div class="w-full px-4 mt-10 md:w-2/3 md:mt-0">
+            <div class="bg-white rounded-lg shadow dark:bg-dark-2 dark:shadow-card">
+              <div class="p-6 border-b border-stroke dark:border-dark-3">
+                <h3 class="text-xl font-semibold text-dark dark:text-white">
+                  Live Preview
+                </h3>
+              </div>
+              
+              <div class="p-6 space-y-8">
+                <!-- Preview Components -->
+                <div>
+                  <h4 class="mb-4 text-base font-medium text-dark dark:text-white">
+                    Buttons
+                  </h4>
+                  <div class="flex flex-wrap gap-4">
+                    <button class="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90">
+                      Primary Button
+                    </button>
+                    <button class="rounded-md border border-primary bg-transparent px-7 py-3 text-base font-medium text-primary hover:bg-primary/10">
+                      Secondary Button
+                    </button>
+                    <button class="rounded-md bg-gray-2 px-7 py-3 text-base font-medium text-dark hover:bg-gray-3 dark:bg-dark-3 dark:text-white dark:hover:bg-dark-4">
+                      Tertiary Button
+                    </button>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 class="mb-4 text-base font-medium text-dark dark:text-white">
+                    Cards
+                  </h4>
+                  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    <div class="rounded-lg border border-stroke bg-white shadow-card p-6 dark:bg-dark-2 dark:border-dark-3">
+                      <img
+                        src="../../assets/images/cards/card-01.jpg"
+                        alt="card image"
+                        class="mb-4 h-48 w-full rounded object-cover"
+                      />
+                      <h5 class="mb-2 text-lg font-semibold text-dark dark:text-white">
+                        Premium Wireless Headphones
+                      </h5>
+                      <p class="mb-4 text-sm text-dark-5 dark:text-dark-6">
+                        Experience immersive audio with our premium wireless headphones
+                      </p>
+                      <div class="flex items-center justify-between">
+                        <span class="text-lg font-bold text-dark dark:text-white">
+                          $199.99
+                        </span>
+                        <button class="rounded-md bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-primary/90">
+                          Add to Cart
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <div class="rounded-lg border border-stroke bg-white shadow-card p-6 dark:bg-dark-2 dark:border-dark-3">
+                      <img
+                        src="../../assets/images/cards/card-02.jpg"
+                        alt="card image"
+                        class="mb-4 h-48 w-full rounded object-cover"
+                      />
+                      <h5 class="mb-2 text-lg font-semibold text-dark dark:text-white">
+                        Smart Watch Series 7
+                      </h5>
+                      <p class="mb-4 text-sm text-dark-5 dark:text-dark-6">
+                        Stay connected and track your fitness with our smart watch
+                      </p>
+                      <div class="flex items-center justify-between">
+                        <span class="text-lg font-bold text-dark dark:text-white">
+                          $399.99
+                        </span>
+                        <button class="rounded-md bg-primary px-5 py-2 text-sm font-medium text-white hover:bg-primary/90">
+                          Add to Cart
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 class="mb-4 text-base font-medium text-dark dark:text-white">
+                    Forms
+                  </h4>
+                  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    <div>
+                      <label
+                        for="name"
+                        class="mb-2.5 block text-base font-medium text-dark dark:text-white"
+                      >
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        class="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-dark placeholder-dark-6 outline-hidden focus:border-primary dark:border-dark-3 dark:text-white dark:placeholder-dark-5"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        for="email"
+                        class="mb-2.5 block text-base font-medium text-dark dark:text-white"
+                      >
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        class="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-dark placeholder-dark-6 outline-hidden focus:border-primary dark:border-dark-3 dark:text-white dark:placeholder-dark-5"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div class="mt-6">
+                    <label
+                      for="message"
+                      class="mb-2.5 block text-base font-medium text-dark dark:text-white"
+                    >
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      placeholder="Enter your message"
+                      rows="4"
+                      class="w-full rounded-lg border border-stroke bg-transparent px-5 py-3 text-dark placeholder-dark-6 outline-hidden focus:border-primary dark:border-dark-3 dark:text-white dark:placeholder-dark-5"
+                    ></textarea>
+                  </div>
+                  
+                  <div class="mt-6">
+                    <button class="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Theme Configurator Section End -->
+    
+    <!-- ====== Footer Section Start -->
+    <footer class="bg-dark py-15 dark:bg-dark">
+      <div class="container mx-auto">
+        <div class="-mx-4 flex flex-wrap">
+          <div class="w-full px-4 md:w-1/2 lg:w-1/4">
+            <div class="mb-12 max-w-[260px]">
+              <a href="javascript:void(0)" class="mb-6 inline-block">
+                <img
+                  src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-white.svg"
+                  alt="logo"
+                  class="w-[120px]"
+                />
+              </a>
+              <p class="mb-9 text-base font-medium text-dark-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna in est adipiscing in phasellus non in justo.
+              </p>
+              <div class="flex items-center space-x-4">
+                <a
+                  href="javascript:void(0)"
+                  class="flex h-10 w-10 items-center justify-center rounded-full bg-dark-2 hover:bg-primary"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 0C3.58172 0 0 3.58172 0 8C0 11.5849 2.50195 14.5849 5.83203 15.7344V10.5H4.21875V8H5.83203V6.23438C5.83203 4.23828 6.94531 3 8.59375 3C9.20703 3 9.79688 3.09375 10.3125 3.25V5.5H9.17969C8.53516 5.5 8.20312 5.82422 8.20312 6.46094V8H10.2891L9.97656 10.5H8.20312V15.7344C11.4961 14.6094 14 11.6758 14 8C14 3.58172 10.4183 0 6 0C5.80469 0 5.60938 0.0117188 5.41406 0.0351562L8 0Z"
+                      fill="white"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="flex h-10 w-10 items-center justify-center rounded-full bg-dark-2 hover:bg-primary"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 0C3.58172 0 0 3.58172 0 8C0 11.5849 2.50195 14.5849 5.83203 15.7344V10.5H4.21875V8H5.83203V6.23438C5.83203 4.23828 6.94531 3 8.59375 3C9.20703 3 9.79688 3.09375 10.3125 3.25V5.5H9.17969C8.53516 5.5 8.20312 5.82422 8.20312 6.46094V8H10.2891L9.97656 10.5H8.20312V15.7344C11.4961 14.6094 14 11.6758 14 8C14 3.58172 10.4183 0 6 0C5.80469 0 5.60938 0.0117188 5.41406 0.0351562L8 0Z"
+                      fill="white"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="flex h-10 w-10 items-center justify-center rounded-full bg-dark-2 hover:bg-primary"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 0C3.58172 0 0 3.58172 0 8C0 11.5849 2.50195 14.5849 5.83203 15.7344V10.5H4.21875V8H5.83203V6.23438C5.83203 4.23828 6.94531 3 8.59375 3C9.20703 3 9.79688 3.09375 10.3125 3.25V5.5H9.17969C8.53516 5.5 8.20312 5.82422 8.20312 6.46094V8H10.2891L9.97656 10.5H8.20312V15.7344C11.4961 14.6094 14 11.6758 14 8C14 3.58172 10.4183 0 6 0C5.80469 0 5.60938 0.0117188 5.41406 0.0351562L8 0Z"
+                      fill="white"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="w-full px-4 md:w-1/2 lg:w-1/4">
+            <div class="mb-12">
+              <h3 class="mb-6 text-xl font-bold text-white">
+                Quick Links
+              </h3>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Shop
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Blog
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="w-full px-4 md:w-1/2 lg:w-1/4">
+            <div class="mb-12">
+              <h3 class="mb-6 text-xl font-bold text-white">
+                Categories
+              </h3>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Electronics
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Fashion
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Home & Garden
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Sports
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="javascript:void(0)"
+                    class="text-base font-medium text-dark-4 hover:text-white"
+                  >
+                    Beauty
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="w-full px-4 md:w-1/2 lg:w-1/4">
+            <div class="mb-12">
+              <h3 class="mb-6 text-xl font-bold text-white">
+                Newsletter
+              </h3>
+              <p class="mb-6 text-base font-medium text-dark-4">
+                Subscribe to our newsletter to get the latest updates and offers.
+              </p>
+              <form class="mb-6">
+                <div class="flex">
+                  <input
+                    type="email"
+                    placeholder="Enter your email"
+                    class="flex-1 rounded-l-lg border border-dark-3 bg-dark-2 px-5 py-3 text-base font-medium text-white placeholder-dark-5 outline-hidden focus:border-primary"
+                  />
+                  <button
+                    type="submit"
+                    class="rounded-r-lg bg-primary px-5 py-3 text-base font-medium text-white hover:bg-primary/90"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+              </form>
+              <div class="flex items-center space-x-3">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.6667 0.666626H3.33337C1.53337 0.666626 0.0666964 2.13329 0.0666964 3.93329V12.0666C0.0666964 13.8666 1.53337 15.3333 3.33337 15.3333H12.6667C14.4667 15.3333 15.9334 13.8666 15.9334 12.0666V3.93329C15.9334 2.13329 14.6667 0.666626 12.6667 0.666626ZM12.6667 14.6666H3.33337C2.20004 14.6666 1.33337 13.7999 1.33337 12.6666V3.93329C1.33337 2.80002 2.20004 1.93335 3.33337 1.93335H12.6667C13.7999 1.93335 14.6667 2.80002 14.6667 3.93329V12.6666C14.6667 13.7999 13.7999 14.6666 12.6667 14.6666ZM6.66671 10.6666H9.33337V9.33329H6.66671V10.6666ZM6.66671 8.00002H9.33337V4.66669H6.66671V8.00002Z"
+                    fill="#FF6B6B"
+                  />
+                </svg>
+                <span class="text-base font-medium text-white">
+                  Secure Payments
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- ====== Footer Section End -->
+    
+    <script>
+      // Theme Configurator Logic
+      document.addEventListener('DOMContentLoaded', () => {
+        // Get DOM elements
+        const primaryColorInput = document.getElementById('primary-color');
+        const radiusInput = document.getElementById('radius');
+        const radiusValue = document.getElementById('radius-value');
+        const shadowInput = document.getElementById('shadow');
+        const shadowValue = document.getElementById('shadow-value');
+        const fontSelect = document.getElementById('font');
+        const generateCodeBtn = document.getElementById('generate-code');
+        
+        // Update CSS variables on input change
+        primaryColorInput.addEventListener('input', updatePrimaryColor);
+        radiusInput.addEventListener('input', updateRadius);
+        shadowInput.addEventListener('input', updateShadow);
+        fontSelect.addEventListener('change', updateFont);
+        
+        // Generate Tailwind config code
+        generateCodeBtn.addEventListener('click', generateTailwindConfig);
+        
+        // Initialize with default values
+        updatePrimaryColor();
+        updateRadius();
+        updateShadow();
+        updateFont();
+        
+        function updatePrimaryColor() {
+          const primaryColor = primaryColorInput.value;
+          const rgbColor = hexRgb(primaryColor, { format: 'array' });
+          
+          // Update CSS variables
+          document.documentElement.style.setProperty('--primary', primaryColor);
+          document.documentElement.style.setProperty('--primary-rgb', `${rgbColor[0]}, ${rgbColor[1]}, ${rgbColor[2]}`);
+          
+          // Update button hover color
+          const hoverColor = darkenColor(primaryColor, 10);
+          document.documentElement.style.setProperty('--primary-hover', hoverColor);
+        }
+        
+        function updateRadius() {
+          const radius = radiusInput.value;
+          radiusValue.textContent = radius;
+          
+          // Update CSS variables for border radius
+          document.documentElement.style.setProperty('--radius-sm', `${radius * 0.5}px`);
+          document.documentElement.style.setProperty('--radius-md', `${radius}px`);
+          document.documentElement.style.setProperty('--radius-lg', `${radius * 1.5}px`);
+          document.documentElement.style.setProperty('--radius-xl', `${radius * 2}px`);
+        }
+        
+        function updateShadow() {
+          const shadow = shadowInput.value;
+          shadowValue.textContent = shadow;
+          
+          // Update CSS variables for shadows
+          document.documentElement.style.setProperty('--shadow', `var(--shadow-${shadow})`);
+        }
+        
+        function updateFont() {
+          const font = fontSelect.value;
+          
+          // Update CSS variable for font family
+          document.documentElement.style.setProperty('--font-family', font);
+          
+          // Add the font to the document
+          if (!document.querySelector(`link[href*="${font}"]`)) {
+            const link = document.createElement('link');
+            link.href = `https://fonts.googleapis.com/css2?family=${font}:wght@100;200;300;400;500;600;700;800;900&display=swap`;
+            link.rel = 'stylesheet';
+            document.head.appendChild(link);
+          }
+        }
+        
+        function generateTailwindConfig() {
+          const primaryColor = primaryColorInput.value;
+          const radius = radiusInput.value;
+          const shadow = shadowInput.value;
+          const font = fontSelect.value;
+          
+          // Generate Tailwind config object
+          const tailwindConfig = {
+            theme: {
+              extend: {
+                colors: {
+                  primary: primaryColor,
+                },
+                borderRadius: {
+                  sm: `${radius * 0.5}px`,
+                  md: `${radius}px`,
+                  lg: `${radius * 1.5}px`,
+                  xl: `${radius * 2}px`,
+                },
+                boxShadow: {
+                  DEFAULT: `var(--shadow-${shadow})`,
+                },
+                fontFamily: {
+                  sans: [`'${font}'`, 'sans-serif'],
+                },
+              },
+            },
+          };
+          
+          // Format the config as a string
+          const configString = JSON.stringify(tailwindConfig, null, 2);
+          
+          // Create a download link
+          const blob = new Blob([configString], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'tailwind.config.json';
+          a.click();
+          
+          // Clean up
+          setTimeout(() => URL.revokeObjectURL(url), 0);
+        }
+        
+        // Helper function to darken a hex color
+        function darkenColor(color, percent) {
+          const num = parseInt(color.slice(1), 16);
+          const amt = Math.round(2.55 * percent);
+          const R = (num >> 16) - amt;
+          const G = (num >> 8 & 0x00FF) - amt;
+          const B = (num & 0x0000FF) - amt;
+          
+          return `#${(0x1000000 + (R < 0 ? 0 : R) * 0x10000 + (G < 0 ? 0 : G) * 0x100 + (B < 0 ? 0 : B)).toString(16).slice(1)}`;
+        }
+      });
+    </script>
+  </body>
+</html>
